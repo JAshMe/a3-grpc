@@ -4,11 +4,11 @@ import grpc
 
 import service.inventory_service_pb2_grpc as inventory_service_grpc
 from service.library_entities_pb2 import *
-from server.src.db import db_operations
-from server.src.errors.ResourceNotFoundError import ResourceNotFoundError
-from server.src.errors.ResourceExistsError import ResourceExistsError
-from src.service.inventory_service_pb2 import CreateBookResponse, GetBookResponse
-from server.src.validators.inventory_validators import validate_create_book_request, validate_get_book_request
+from db import db_operations
+from errors.ResourceNotFoundError import ResourceNotFoundError
+from errors.ResourceExistsError import ResourceExistsError
+from service.inventory_service_pb2 import CreateBookResponse, GetBookResponse
+from validators.inventory_validators import validate_create_book_request, validate_get_book_request
 
 
 # This class provides an implementation of methods of the LibraryInventory service

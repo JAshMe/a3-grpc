@@ -2,7 +2,7 @@
 This module would have methods that would validate whether a given book is valid or not.
 """
 
-from src.service.inventory_service_pb2 import CreateBookRequest, GetBookRequest
+from service.inventory_service_pb2 import CreateBookRequest, GetBookRequest
 
 
 def validate_create_book_request(request: CreateBookRequest):
