@@ -1,9 +1,9 @@
 """
 This module would be used to define various kinds of operations defined on the book db
 """
-from src.db.mock_inventory_db import book_db
-from src.errors.ResourceExistsError import ResourceExistsError
-from src.errors.ResourceNotFoundError import ResourceNotFoundError
+from server.src.db.mock_inventory_db import book_db
+from server.src.errors.ResourceExistsError import ResourceExistsError
+from server.src.errors.ResourceNotFoundError import ResourceNotFoundError
 from src.service.library_entities_pb2 import Book
 
 

@@ -1,15 +1,14 @@
 # Main class to define the grpc server
 from concurrent import futures
 import grpc
-from google.protobuf.internal.well_known_types import Any
 
 import service.inventory_service_pb2_grpc as inventory_service_grpc
 from service.library_entities_pb2 import *
-from src.db import db_operations
-from src.errors.ResourceNotFoundError import ResourceNotFoundError
-from src.errors.ResourceExistsError import ResourceExistsError
+from server.src.db import db_operations
+from server.src.errors.ResourceNotFoundError import ResourceNotFoundError
+from server.src.errors.ResourceExistsError import ResourceExistsError
 from src.service.inventory_service_pb2 import CreateBookResponse, GetBookResponse
-from src.validators.inventory_validators import validate_create_book_request, validate_get_book_request
+from server.src.validators.inventory_validators import validate_create_book_request, validate_get_book_request
 
 
 # This class provides an implementation of methods of the LibraryInventory service
