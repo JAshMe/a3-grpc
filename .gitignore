@@ -3,3 +3,7 @@ venv
 
 #intellij files
 .idea
+
+#python bytecode
+*.pyc
+__pycache__

@@ -1,0 +1,45 @@
+// this proto defines the inventory service that provides functionalities
+// related to inventory
+
+syntax = "proto3";
+
+import "library_entities.proto";
+
+package inventory;
+
+//Request to Create a book in inventory
+message CreateBookRequest {
+  optional Book bookToCreate = 1;
+}
+
+//Response received when a create gRPC is called
+message CreateBookResponse {
+
+  optional string result = 1;
+  optional ResponseStatus status = 2;
+
+}
+
+//Request to Create a book in inventory
+message GetBookRequest {
+  optional string isbn = 1;
+}
+
+//Response received when a create gRPC is called
+message GetBookResponse {
+
+  optional Book book = 1;
+  optional ResponseStatus status = 2;
+
+}
+
+//Service to define rpcs related to inventory
+service LibraryInventory {
+  //Creates the book in the inventory
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
+    // errors: book already exists
+
+  //Gets details for a particular book
+  rpc GetBook(GetBookRequest) returns (GetBookResponse);
+    //errors: book doesn't exist
+}
