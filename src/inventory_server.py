@@ -29,22 +29,27 @@ class LibraryInventoryServicer(inventory_service_grpc.LibraryInventoryServicer):
         if validation_msg is not None:  # means there is some issue with the request.
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details(validation_msg)
+
             status = ResponseStatus(
                 code=grpc.StatusCode.INVALID_ARGUMENT.value[0],
                 message=grpc.StatusCode.INVALID_ARGUMENT.name + ": " + validation_msg
             )
+
             return CreateBookResponse(result="Book not created.", status=status)
 
         try:
             db_operations.add_book(request.bookToCreate)
         except ResourceExistsError as err:
             print("Couldn't add the book. Exception: ", err)
+
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
             context.set_details(str(err))
+
             status = ResponseStatus(
                 code=grpc.StatusCode.ALREADY_EXISTS.value[0],
                 message=grpc.StatusCode.ALREADY_EXISTS.name + ": " + str(err)
             )
+
             return CreateBookResponse(result="Book not created.", status=status)
         else:
             return CreateBookResponse(result="Book with isbn: " + request.bookToCreate.isbn + " created.")
@@ -54,22 +59,27 @@ class LibraryInventoryServicer(inventory_service_grpc.LibraryInventoryServicer):
         if validation_msg is not None:  # means there is some issue with the request.
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details(validation_msg)
+
             status = ResponseStatus(
                 code=grpc.StatusCode.INVALID_ARGUMENT.value[0],
                 message=grpc.StatusCode.INVALID_ARGUMENT.name + ": " + validation_msg,
             )
+
             return GetBookResponse(status=status)
 
         try:
             book: Book = db_operations.get_book(request.isbn)
         except ResourceNotFoundError as err:
             print("Couldn't find the book. Exception: ", err)
+
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details(str(err))
+
             status = ResponseStatus(
                 code=grpc.StatusCode.ALREADY_EXISTS.value[0],
                 message=grpc.StatusCode.ALREADY_EXISTS.name + ": " + str(err),
             )
+
             return GetBookResponse(status=status)
         else:
             return GetBookResponse(book=book)

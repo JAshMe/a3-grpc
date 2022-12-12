@@ -12,11 +12,11 @@ message ResponseStatus {
 
   // A simple error code that can be easily handled by the client. The
   // actual error code is defined by `google.rpc.Code`.
-  int32 code = 1;
+  optional int32 code = 1;
 
   // A developer-facing human-readable error message in English.
   // Explains the error and offer an actionable resolution to it.
-  string message = 2;
+  optional string message = 2;
 
   // Additional error information that the client code can use to handle
   // the error, such as retry info or a help link.
