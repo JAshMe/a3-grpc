@@ -6,6 +6,7 @@ All the protos are present in the `protos` directory.
 All the generated 'pb2' files are present in `service` directory.
 
 
+### Generate Python Code for Proto Files
 To generate the code for proto files, follow below commands:
 
 ```shell
@@ -15,7 +16,8 @@ python -m grpc_tools.protoc -I. --python_out=../service --pyi_out=../service --g
 python -m grpc_tools.protoc -I. --python_out=../service --pyi_out=../service  *entities.proto
 ```
 
-After running these commands, there will be 'pb2' files in the `service` directory.
+### Start the gRPC Server
+After running above commands, there will be 'pb2' files in the `service` directory.
 To start the python server:
 - Open `inventory_service_pb2.py`.
 - Change
